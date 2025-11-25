@@ -7,7 +7,6 @@ services:
       - mongo
     environment:
       - MONGO_URL=mongodb://mongo:27017
-      - DB_NAME=jukebox
     volumes:
       - .:/app  # Optional: for live code reload during development
   mongo:

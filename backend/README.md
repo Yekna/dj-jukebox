@@ -1,0 +1,1 @@
+# WHEN ADDING NEW PACKAGES TO requirements.txt YOU NEED TO REBUILD THE Dockerfile USING docker compose build fastapi and restart the docker container

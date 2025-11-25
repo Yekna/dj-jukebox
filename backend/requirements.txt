@@ -1,3 +1,5 @@
 fastapi
 uvicorn
 motor
+starlette
+dotenv
