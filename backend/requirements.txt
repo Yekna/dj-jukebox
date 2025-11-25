@@ -3,3 +3,7 @@ uvicorn
 motor
 starlette
 dotenv
+jwt
+bcrypt
+email-validator
+PyJWT
