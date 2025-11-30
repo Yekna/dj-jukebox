@@ -4,6 +4,7 @@ import Landing from './components/landing'
 import './App.css'
 import DJDashboard from './components/dj-dashboard';
 import PartyGoerRoom from './components/pary-goer-room';
+import NotFound from './components/not-found';
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 export const API = `${BACKEND_URL}/api`;
@@ -20,6 +21,7 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/dj-dashboard" element={<DJDashboard />} />
           <Route path="/room/:pin" element={<PartyGoerRoom />} />
+          <Route path='*' element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </>
