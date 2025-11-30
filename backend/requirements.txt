@@ -6,3 +6,9 @@ dotenv
 bcrypt
 email-validator
 PyJWT
+websockets
+google-api-python-client
+google-api-core
+google-auth-httplib2
+google-auth
+googleapis-common-protos
