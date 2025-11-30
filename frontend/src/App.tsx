@@ -2,6 +2,7 @@ import { Toaster } from 'sonner'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from './components/landing'
 import './App.css'
+import DJDashboard from './components/dj-dashboard';
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 export const API = `${BACKEND_URL}/api`;
@@ -16,6 +17,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Landing />} />
+          <Route path="/dj-dashboard" element={<DJDashboard />} />
         </Routes>
       </BrowserRouter>
     </>
