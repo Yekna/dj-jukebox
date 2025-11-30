@@ -4,7 +4,8 @@ import { toast } from "sonner";
 import { API } from "@/App";
 import type { Room, Song } from "@/App"
 import QRCode from 'qrcode'
-import { Badge, Music, Search, ThumbsUp } from "lucide-react";
+import { Music, Search, ThumbsUp } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Card } from "./ui/card";
