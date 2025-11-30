@@ -301,13 +301,11 @@ async def request_song(pin: str, song_data: SongRequestCreate):
     doc['created_at'] = doc['created_at'].isoformat()
     await db.song_requests.insert_one(doc)
 
-    await db.song_requests.find_one({"id": doc['id']}, {"_id": 0})
-
     await manager.broadcast(pin, {
         "type": "song_requested",
-        "song": song_request.model_dump()
+        "song": doc["title"]
     })
-    
+
     return song_request
 
 @api_router.get("/songs/search")
