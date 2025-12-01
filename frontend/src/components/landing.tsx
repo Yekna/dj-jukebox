@@ -25,8 +25,8 @@ const Landing = () => {
       const endpoint = isLogin ? "/auth/login" : "/auth/register";
       const data = await fetch(`${API}${endpoint}`, { body: JSON.stringify({ email, password }), method: "POST", headers: { "Content-Type": "application/json" } }).then(async (res) => {
         if(!res.ok) {
-            const {detail} = await res.json();
-            throw new Error(detail);
+          const msg = await res.text();
+          throw new Error(msg)
         }
 
         return res.json()

@@ -6,7 +6,7 @@ import DJDashboard from './components/dj-dashboard';
 import PartyGoerRoom from './components/pary-goer-room';
 import NotFound from './components/not-found';
 
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+const BACKEND_URL = import.meta.env.MODE === 'development' ? import.meta.env.VITE_BACKEND_URL_DEV : import.meta.env.VITE_BACKEND_URL;
 export const API = `${BACKEND_URL}/api`;
 
 export type Song = { status: 'pending' | 'approved' | 'played' | 'rejected', video_id: string; id: string, thumbnail: string, title: string, submitter_name: string, votes: number, youtube_url: string }

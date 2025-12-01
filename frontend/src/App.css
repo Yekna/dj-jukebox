@@ -52,13 +52,13 @@ h1, h2, h3 {
 }
 
 .App {
-  min-height: 100vh;
+  min-height: 100dvh;
   background: linear-gradient(180deg, #0a0a0f 0%, #1a1a2e 100%);
 }
 
 /* Landing Page */
 .landing-container {
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -164,7 +164,7 @@ h1, h2, h3 {
 
 /* Auth Pages */
 .auth-container {
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -274,7 +274,7 @@ h1, h2, h3 {
 
 /* DJ Dashboard */
 .dj-dashboard {
-  min-height: 100vh;
+  min-height: 100dvh;
   padding: 32px;
 }
 
@@ -313,6 +313,10 @@ h1, h2, h3 {
   transition: all 0.3s ease;
 }
 
+.close-room-btn::after {
+  content: "Close Room"
+}
+
 .close-room-btn:hover {
   background: rgba(255, 59, 92, 0.3);
   box-shadow: 0 4px 16px rgba(255, 59, 92, 0.3);
@@ -327,7 +331,7 @@ h1, h2, h3 {
   border: 1px solid rgba(0, 255, 136, 0.2);
   border-radius: 20px;
   padding: 32px;
-  margin-bottom: 32px;
+  margin-top: 32px;
 }
 
 .pin-section h2,
@@ -530,7 +534,7 @@ h1, h2, h3 {
 
 /* Party Goer Room */
 .partygoer-room {
-  min-height: 100vh;
+  min-height: 100dvh;
   padding: 24px;
   max-width: 1200px;
   margin: 0 auto;
@@ -742,6 +746,7 @@ input:checked + .slider:before {
 
 .result-card {
   display: flex;
+  flex-direction: row;
   gap: 16px;
   align-items: center;
   background: rgba(10, 10, 15, 0.8);
@@ -843,8 +848,8 @@ input:checked + .slider:before {
 }
 
 .queue-thumbnail {
-  width: 100px;
-  height: 56px;
+  width: 140px;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
   border-radius: 8px;
 }
@@ -949,7 +954,7 @@ input:checked + .slider:before {
 
 /* Loading Screen */
 .loading-screen {
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1014,5 +1019,28 @@ input:checked + .slider:before {
   
   .search-form {
     flex-direction: column;
+  }
+}
+
+@media (max-width: 678px) {
+  .result-card,
+  .queue-card,
+  .song-card {
+    flex-direction: column;
+  }
+  .queue-card .youtube-link-small {
+    display: none;
+  }
+  .queue-info {
+    align-items: center;
+  }
+  .close-room-btn {
+    gap: 0;
+  }
+  .close-room-btn::after {
+    content: ""
+  }
+  .header-left h1 {
+    font-size: 28px;
   }
 }

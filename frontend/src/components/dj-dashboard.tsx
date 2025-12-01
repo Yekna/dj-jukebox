@@ -11,10 +11,7 @@ import type { Room, Song } from "@/App";
 const DJDashboard = () => {
   const navigate = useNavigate();
   const [room, setRoom] = useState<Room>(null);
-
-  // todo: don't use state check out how you rendered stuff from the websocket in different folder
   const [songs, setSongs] = useState<Array<Song>>([]);
-
   const [qrCodeUrl, setQrCodeUrl] = useState("");
   const [loading, setLoading] = useState(false);
   const wsRef = useRef<null | WebSocket>(null);
@@ -76,7 +73,12 @@ const DJDashboard = () => {
       const data = JSON.parse(event.data);
 
       if (data.type === 'song_requested' || data.type === 'song_voted' || data.type === 'song_status_changed') {
+        if(data.type === 'song_requested') {
+          toast.info(`${data.user} requested the song ${data.song}`)
+        }
         loadSongs();
+      } else if (data.type === 'user_joined') {
+        toast.info(`A user joined the room`)
       }
     };
   };
@@ -133,19 +135,12 @@ const DJDashboard = () => {
     }
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    navigate("/");
-  };
-
   if (loading || !room) {
     return <div className="loading-screen">Setting up your room...</div>;
   }
 
   const pendingSongs = songs.filter(s => s?.status === 'pending');
   const approvedSongs = songs.filter(s => s?.status === 'approved');
-  const playedSongs = songs.filter(s => s?.status === 'played');
 
   return (
     <div className="dj-dashboard">
@@ -161,23 +156,8 @@ const DJDashboard = () => {
             className="close-room-btn"
           >
             <LogOut size={18} />
-            Close Room
           </Button>
         </div>
-      </div>
-
-      <div className="room-info-card">
-        <div className="pin-section">
-          <h2>Room PIN</h2>
-          <div data-testid="room-pin" className="pin-display">{room.pin}</div>
-          <p className="pin-instruction">Share this PIN with party goers</p>
-        </div>
-        {qrCodeUrl && (
-          <div className="qr-section">
-            <h2>QR Code</h2>
-            <img data-testid="qr-code" src={qrCodeUrl} alt="Room QR Code" className="qr-code" />
-          </div>
-        )}
       </div>
 
       <div className="songs-section">
@@ -257,6 +237,20 @@ const DJDashboard = () => {
             )}
           </div>
         </div>
+      </div>
+
+      <div className="room-info-card">
+        <div className="pin-section">
+          <h2>Room PIN</h2>
+          <div data-testid="room-pin" className="pin-display">{room.pin}</div>
+          <p className="pin-instruction">Share this PIN with party goers</p>
+        </div>
+        {qrCodeUrl && (
+          <div className="qr-section">
+            <h2>QR Code</h2>
+            <img data-testid="qr-code" src={qrCodeUrl} alt="Room QR Code" className="qr-code" />
+          </div>
+        )}
       </div>
     </div>
   );
